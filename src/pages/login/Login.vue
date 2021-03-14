@@ -104,12 +104,11 @@ export default {
           this.logging = true
           const name = this.form.getFieldValue('name')
           const password = this.form.getFieldValue('password')
-          login(name, password).then(this.afterLogin)
+          login(name, password).then(this.afterLogin).finally(() => this.logging = false)
         }
       })
     },
     afterLogin(res) {
-      this.logging = false
       const loginRes = res.data
       if (loginRes.code >= 0) {
         const {user, permissions, roles} = loginRes.data
