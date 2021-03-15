@@ -25,7 +25,7 @@
             <a-form-item>
               <a-input
                 size="large"
-                placeholder="888888"
+                placeholder="123456"
                 autocomplete="autocomplete"
                 type="password"
                 v-decorator="['password', {rules: [{ required: true, message: '请输入密码', whitespace: true}]}]"
@@ -75,7 +75,7 @@
 
 <script>
 import CommonLayout from '@/layouts/CommonLayout'
-import {login, getRoutesConfig} from '@/services/user'
+import {login, getRoutesConfig, getCurrentLoginUser} from '@/services/user'
 import {setAuthorization} from '@/utils/request'
 import {loadRoutes} from '@/utils/routerUtil'
 import {mapMutations} from 'vuex'
@@ -108,15 +108,22 @@ export default {
         }
       })
     },
-    afterLogin(res) {
+    async afterLogin(res) {
       const loginRes = res.data
       if (loginRes.code >= 0) {
-        const {user, permissions, roles} = loginRes.data
-        this.setUser(user)
+
+        console.log(loginRes)
+        setAuthorization({token: loginRes.data.token, expireAt: new Date(loginRes.data.expireAt)})
+
+        let userInfoData = await getCurrentLoginUser()
+
+        // const {user, permissions, roles} = loginRes.data
+        const {user, profile, permissions = [], roles} = userInfoData.data
+        this.setUser({...user, ...profile})
         this.setPermissions(permissions)
         this.setRoles(roles)
-        setAuthorization({token: loginRes.data.token, expireAt: new Date(loginRes.data.expireAt)})
         // 获取路由配置
+        await this.$router.push('/demo')
         getRoutesConfig().then(result => {
           const routesConfig = result.data.data
           loadRoutes(routesConfig)

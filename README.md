@@ -1,4 +1,3 @@
-简体中文 | [English](./README.en-US.md)
 <h1 align="center">Vue Antd Admin</h1>
 
 <div align="center">
@@ -44,10 +43,3 @@ $ npm install
 $ npm run serve
 ```
 更多信息参考 [使用文档](https://iczer.gitee.io/vue-antd-admin-docs)
-
-## 参与贡献
-我们非常欢迎你的贡献，你可以通过以下方式和我们一起共建 :star2:：
-- 在你的公司或个人项目中使用 Vue Antd Admin。
-- 通过 [Issue](https://github.com/iczer/vue-antd-admin/issues) 报告:bug:或进行咨询。
-- 提交 [Pull Request](https://github.com/iczer/vue-antd-admin/pulls) 改进 Admin 的代码。
-- 加入社群，与小伙伴们一同交流心得。QQ群：812277510、610090280（已满）

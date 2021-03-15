@@ -1,4 +1,4 @@
-import {LOGIN, ROUTES} from '@/services/api'
+import {CURRENT_LOGIN_USER, LOGIN, LOGOUT, ROUTES} from '@/services/api'
 import {request, METHOD, removeAuthorization} from '@/utils/request'
 
 /**
@@ -18,14 +18,24 @@ export async function getRoutesConfig() {
   return request(ROUTES, METHOD.GET)
 }
 
+export async function getCurrentLoginUser() {
+  return request(CURRENT_LOGIN_USER, METHOD.GET)
+
+}
+
 /**
  * 退出登录
  */
 export function logout() {
-  localStorage.removeItem(process.env.VUE_APP_ROUTES_KEY)
-  localStorage.removeItem(process.env.VUE_APP_PERMISSIONS_KEY)
-  localStorage.removeItem(process.env.VUE_APP_ROLES_KEY)
-  removeAuthorization()
+  request(LOGOUT, METHOD.POST).then(res => {
+    console.log(res);
+  }).finally(() => {
+    localStorage.removeItem(process.env.VUE_APP_ROUTES_KEY)
+    localStorage.removeItem(process.env.VUE_APP_PERMISSIONS_KEY)
+    localStorage.removeItem(process.env.VUE_APP_ROLES_KEY)
+    removeAuthorization()
+  });
+
 }
 export default {
   login,
