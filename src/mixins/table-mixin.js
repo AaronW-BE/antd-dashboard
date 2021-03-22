@@ -37,7 +37,7 @@ export default {
             this.tablePagination = {...this.tablePagination, ...pagination}
         },
         __loadData__() {
-            this.tableDataLoader({
+            typeof this.tableDataLoader === 'function' && this.tableDataLoader({
                 ...this.data,
                 [process.env.VUE_APP_PAGINATION_PAGE_KEY]: this.tablePagination.current,
                 [process.env.VUE_APP_PAGINATION_PAGE_SIZE_KEY]: this.tablePagination.pageSize,
