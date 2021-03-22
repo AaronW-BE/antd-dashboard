@@ -3,7 +3,7 @@ export default {
   state: {
     user: undefined,
     permissions: null,
-    roles: null,
+    roles: ['super-admin'],
     routesConfig: null
   },
   getters: {

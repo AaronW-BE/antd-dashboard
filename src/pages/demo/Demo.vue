@@ -4,10 +4,12 @@
       @change="onTableChange"
     >
       <a-table-column key="title" data-index="title" title="标题" />
-      <a-table-column key="isbn" data-index="isbn" title="ISBN" />
-      <a-table-column key="price" data-index="price" title="价格" />
-      <a-table-column key="express" data-index="express" title="出版社" />
+      <a-table-column key="isbn" data-index="isbn" title="ISBN" width="200px" />
+      <a-table-column key="price" data-index="price" title="价格" width="160px" />
+      <a-table-column key="express" data-index="express" title="出版社" width="200px" />
     </a-table>
+
+    <a-button type="primary" v-roles="['admin', 'super-admin']" @click="refreshTable">更新表格</a-button>
   </div>
 </template>
 
