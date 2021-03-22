@@ -4,10 +4,15 @@ import Cookie from 'js-cookie'
 // 跨域认证信息 header 名
 const xsrfHeaderName = 'Authorization'
 
+const API_PROXY_PREFIX='/api'
+const BASE_URL = process.env.NODE_ENV === 'production' ? process.env.VUE_APP_API_BASE_URL : API_PROXY_PREFIX
+
 axios.defaults.timeout = 5000
 axios.defaults.withCredentials= true
 axios.defaults.xsrfHeaderName= xsrfHeaderName
 axios.defaults.xsrfCookieName= xsrfHeaderName
+
+axios.defaults.baseURL = BASE_URL;
 
 // 认证类型
 const AUTH_TYPE = {
