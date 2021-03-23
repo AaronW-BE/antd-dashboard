@@ -23,6 +23,10 @@ export async function getCurrentLoginUser() {
 
 }
 
+export async function getUserProfile(username) {
+  return request(`/user/${username}/profile`, METHOD.GET);
+}
+
 /**
  * 退出登录
  */
